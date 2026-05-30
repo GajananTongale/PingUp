@@ -18,7 +18,7 @@
     "express": "^5.1.0",
     "fs": "^0.0.1-security",
     "imagekit": "^6.0.0",
-    "inngest": "^4.5.0",
+    "inngest": "^3.54.0",
     "mongoose": "^8.17.1",
     "moongose": "^1.0.0",
     "multer": "^2.0.2",

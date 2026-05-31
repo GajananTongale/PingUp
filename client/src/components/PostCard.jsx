@@ -237,7 +237,7 @@ const PostCard = ({ post, fetchPosts }) => {
         <div className="flex items-center gap-1">
           <Heart
             className={`w-4 h-4 cursor-pointer ${
-              likes.includes(currentUser._id) && "text-red-500 fill-red-500"
+                likes.includes(currentUser?._id) && "text-red-500 fill-red-500"
             }`}
             onClick={handleLike}
           />

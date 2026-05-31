@@ -198,11 +198,11 @@ export const unfollowUser = async (req, res) => {
   try {
     const { userId } =  req.auth();
     const { id } = req.body; // the target user to follow
-    
+
     const user=await userModel.findById(userId);
     user.following=user.following.filter(user => user !== id);
     await user.save();
-    
+
     const toUser=await userModel.findById(id);
     toUser.followers=toUser.followers.filter(user => user !== userId);
     await toUser.save();
@@ -297,7 +297,7 @@ export const getUserConnections=async(req,res)=>{
       to_user_id:userId,
       status:"pending"
     }).populate('from_user_id')).map(connection=>connection.from_user_id);
-   
+
     res.json({success:true,connections, following, followers, pendingConnections});
   } catch (error) {
     console.log(error);
@@ -316,7 +316,7 @@ export const acceptConnectionRequest=async(req,res)=>{
       from_user_id:id,
       to_user_id:userId,
     });
-    
+
     if(!connection){
       return res.json({success:false,message:"Connection not found"});
     }

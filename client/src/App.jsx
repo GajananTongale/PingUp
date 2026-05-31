@@ -37,12 +37,12 @@ const App = () => {
       }
     }
     fetchData();
-  },[user,getToken,dispatch]);
+  },[user,dispatch]);
 
   useEffect(()=>{
     pathnameRef.current=pathname;
   },[pathname])
-  
+
   useEffect(()=>{
   if(user){
     const eventSource=new EventSource(import.meta.env.VITE_BASEURL+"/api/message/"+user.id);

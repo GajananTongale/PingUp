@@ -1,9 +1,16 @@
-export const protect = async (req, res, next) => {
-  try {
-    const { userId } = await req.auth(); // Clerk decodes JWT/session here
-    if (!userId) return res.json({ success: false, message: "Not authenticated" });
-    next();
-  } catch (error) {
-    res.json({ success: false, message: error.message });
+import { getAuth } from "@clerk/express";
+
+export const protect = (req, res, next) => {
+  const { userId } = getAuth(req);
+
+  console.log("USER ID:", userId);
+
+  if (!userId) {
+    return res.status(401).json({
+      success: false,
+      message: "Not authenticated",
+    });
   }
+
+  next();
 };

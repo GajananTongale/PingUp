@@ -13,21 +13,21 @@ export const AddPost = async (req, res) => {
 
     if (images && images.length > 0) {
       image_urls = await Promise.all(
-        images.map(async (img) => {
-          const base64File = img.buffer.toString("base64");
+          images.map(async (img) => {
+            const base64File = img.buffer.toString("base64");
 
-          const response = await imagekit.upload({
-            file: base64File,
-            fileName: img.originalname,
-            folder: "/posts",
-            useUniqueFileName: true,
-          });
+            const response = await imagekit.upload({
+              file: base64File,
+              fileName: img.originalname,
+              folder: "/posts",
+              useUniqueFileName: true,
+            });
 
-          return imagekit.url({
-            path: response.filePath,
-            transformation: [{ quality: "auto" }, { format: "webp" }, { width: "512" }],
-          });
-        })
+            return imagekit.url({
+              path: response.filePath,
+              transformation: [{ quality: "auto" }, { format: "webp" }, { width: "512" }],
+            });
+          })
       );
     }
 
@@ -53,8 +53,8 @@ export const getFeedPosts = async (req, res) => {
     const userIds = [userId, ...user.connections, ...user.following];
 
     const posts = await postModel.find({ user: { $in: userIds } })
-      .populate("user")
-      .sort({ createdAt: -1 });
+        .populate("user")
+        .sort({ createdAt: -1 });
 
     res.json({ success: true, posts });
   } catch (error) {

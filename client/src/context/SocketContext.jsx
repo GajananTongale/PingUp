@@ -20,7 +20,7 @@ export const SocketProvider = ({ children }) => {
         if (!userId) return;
 
         const socketInstance = io(
-            "http://localhost:4000",
+            import.meta.env.VITE_BASEURL,
             {
                 query: {
                     userId,

@@ -165,7 +165,8 @@ app.use(express.json());
 app.use(cors({
   origin: [
     "http://localhost:5173",
-    process.env.CLIENT_URL
+    "https://ping-up-frontend-eta.vercel.app",
+    "https://pingup-social-media-eeky.onrender.com"
   ],
   credentials: true
 }));

@@ -89,16 +89,16 @@ const PORT = process.env.PORT || 4000;
 const server = http.createServer(app);
 
 // Socket.IO setup
-app.use(
-    cors({
-      origin: [
-        "http://localhost:5173",
-        "https://ping-up-frontend-eta.vercel.app",
-      ],
-      credentials: true,
-      allowedHeaders: ["Content-Type", "Authorization"],
-    })
-);
+export const io = new Server(server, {
+  cors: {
+    origin: [
+      "http://localhost:5173",
+      "https://ping-up-frontend-eta.vercel.app",
+      "https://pingup-social-media-eeky.onrender.com"
+    ],
+    credentials: true,
+  }
+});
 
 // Store connected users
 export const userSocketMap = {};
